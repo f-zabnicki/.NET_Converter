@@ -14,9 +14,9 @@ namespace Converter
             switch (input.Unit)
             {
                 case Unit.Gram:
-                    return new UnitValue(input.Value * GramToPoundRatio, Unit.Pound);
+                    return new UnitValue(input.Value * GramToPoundRatio, new SystemUnit(Unit.Pound));
                 case Unit.Pound:
-                    return new UnitValue(input.Value * PoundToGramRatio, Unit.Gram);
+                    return new UnitValue(input.Value * PoundToGramRatio, new SystemUnit(Unit.Gram));
                 default:
                     throw new NotSupportedException("Not supported unit");
             }

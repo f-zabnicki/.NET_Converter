@@ -17,7 +17,7 @@ namespace Converter
             if (ConvertionRatio.TryGetValue(input.Unit, out decimal ratio))
             {
                 var value = input.Value * ratio;
-                return new UnitValue(value, Unit.Gram);
+                return new UnitValue(value, new SystemUnit(Unit.Gram));
             }
             else
             {
@@ -27,7 +27,7 @@ namespace Converter
         public static UnitValue ToDesignated(UnitValue input, Unit unit)
         {
             var value = input.Value * ConvertionRatio[unit];
-            return new UnitValue(value, unit);
+            return new UnitValue(value, new SystemUnit(unit));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ConverterConsole
 {
@@ -6,7 +7,12 @@ namespace ConverterConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Regex find = new Regex("([0-9]+[0-9])|([a-z]+[a-z])|([a-z])");
+            Console.WriteLine("Hello, please input conversion");
+            Match match = find.Match(Console.ReadLine());
+            Console.WriteLine(match.Value);
+            Console.ReadLine();
+
         }
     }
 }
