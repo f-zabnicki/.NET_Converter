@@ -6,7 +6,7 @@ namespace Converter.Data
 {
     public class UnitValue
     {
-        internal decimal Value { get; }
+        public decimal Value { get; }
         internal Unit Unit { get; }
         internal MeasureSystem System { get; }
         public UnitValue(decimal value, SystemUnit unit)
@@ -17,7 +17,7 @@ namespace Converter.Data
         }
         override public string ToString()
         {
-            return $"{Value}{Unit}";
+            return $"{Value} {Unit}";
         }
     }
 }
