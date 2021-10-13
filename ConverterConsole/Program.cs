@@ -11,7 +11,7 @@ namespace ConverterConsole
         {
             {"g", Unit.Gram },
             {"mg", Unit.Miligram },
-            {"lbt", Unit.Pound },
+            {"lbs", Unit.Pound },
             {"oz", Unit.Ounce},
         };
         static void Main(string[] args)

@@ -13,7 +13,7 @@ namespace ConverterTests
         [DataRow ("1529g, mg", "1529", "g", "mg")]
         [DataRow ("15292221oz, g", "15292221", "oz", "g")]
         [DataRow ("19lbt, oz", "19", "lbt", "oz")]
-        [DataRow ("22991mg, lbt", "22991", "mg", "lbt")]
+        [DataRow ("22991mg, lbs", "22991", "mg", "lbs")]
         public void RegexConvertingInputIntoValuesGroups(string input, string a, string b, string c)
         {
             MatchCollection outcome;
@@ -38,7 +38,7 @@ namespace ConverterTests
             SystemUnit expectedUnit = new SystemUnit(to);
             UnitValue inputValue = new UnitValue(parsed, fromUnit);
             UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
-            Assert.AreEqual(parsed * 0.001m, outcome.Value);
+            Assert.AreEqual(parsed * 1000m, outcome.Value);
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace ConverterTests
             SystemUnit expectedUnit = new SystemUnit(to);
             UnitValue inputValue = new UnitValue(parsed, fromUnit);
             UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
-            Assert.AreEqual(parsed * 0.0625m, outcome.Value);
+            Assert.AreEqual(parsed * 16m, outcome.Value);
         }
 
         [TestMethod]
@@ -93,6 +93,78 @@ namespace ConverterTests
             UnitValue inputValue = new UnitValue(parsed, fromUnit);
             UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
             Assert.AreEqual(parsed * 0.0625m, outcome.Value);
+        }
+
+        [TestMethod]
+        [DataRow("18273", Unit.Gram, Unit.Pound)]
+        [DataRow("11208273", Unit.Gram, Unit.Pound)]
+        [DataRow("73", Unit.Gram, Unit.Pound)]
+        [DataRow("11273", Unit.Gram, Unit.Pound)]
+        [DataRow("1125238273", Unit.Gram, Unit.Pound)]
+        [DataRow("3", Unit.Gram, Unit.Pound)]
+        [DataRow("1", Unit.Gram, Unit.Pound)]
+        public void GramsToPoundsConvertion(string value, Unit from, Unit to)
+        {
+            var parsed = Decimal.Parse(value);
+            SystemUnit fromUnit = new SystemUnit(from);
+            SystemUnit expectedUnit = new SystemUnit(to);
+            UnitValue inputValue = new UnitValue(parsed, fromUnit);
+            UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
+            Assert.AreEqual(parsed * 0.0022046226m, outcome.Value);
+        }
+
+        [TestMethod]
+        [DataRow("18273", Unit.Miligram, Unit.Pound)]
+        [DataRow("11208273", Unit.Miligram, Unit.Pound)]
+        [DataRow("73", Unit.Miligram, Unit.Pound)]
+        [DataRow("11273", Unit.Miligram, Unit.Pound)]
+        [DataRow("1125238273", Unit.Miligram, Unit.Pound)]
+        [DataRow("3", Unit.Miligram, Unit.Pound)]
+        [DataRow("1", Unit.Miligram, Unit.Pound)]
+        public void MiligramsToPoundsConvertion(string value, Unit from, Unit to)
+        {
+            var parsed = Decimal.Parse(value);
+            SystemUnit fromUnit = new SystemUnit(from);
+            SystemUnit expectedUnit = new SystemUnit(to);
+            UnitValue inputValue = new UnitValue(parsed, fromUnit);
+            UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
+            Assert.AreEqual(parsed * 0.0000022046226m, outcome.Value);
+        }
+
+        [TestMethod]
+        [DataRow("18273", Unit.Miligram, Unit.Ounce)]
+        [DataRow("11208273", Unit.Miligram, Unit.Ounce)]
+        [DataRow("73", Unit.Miligram, Unit.Ounce)]
+        [DataRow("11273", Unit.Miligram, Unit.Ounce)]
+        [DataRow("1125238273", Unit.Miligram, Unit.Ounce)]
+        [DataRow("3", Unit.Miligram, Unit.Ounce)]
+        [DataRow("1", Unit.Miligram, Unit.Ounce)]
+        public void MiligramsToOuncesConvertion(string value, Unit from, Unit to)
+        {
+            var parsed = Decimal.Parse(value);
+            SystemUnit fromUnit = new SystemUnit(from);
+            SystemUnit expectedUnit = new SystemUnit(to);
+            UnitValue inputValue = new UnitValue(parsed, fromUnit);
+            UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
+            Assert.AreEqual(((parsed / 1000) * 0.0022046226m) * 16, outcome.Value);
+        }
+
+        [TestMethod]
+        [DataRow("18273", Unit.Gram, Unit.Ounce)]
+        [DataRow("11208273", Unit.Gram, Unit.Ounce)]
+        [DataRow("73", Unit.Gram, Unit.Ounce)]
+        [DataRow("11273", Unit.Gram, Unit.Ounce)]
+        [DataRow("1125238273", Unit.Gram, Unit.Ounce)]
+        [DataRow("3", Unit.Gram, Unit.Ounce)]
+        [DataRow("1", Unit.Gram, Unit.Ounce)]
+        public void GramsToOuncesConvertion(string value, Unit from, Unit to)
+        {
+            var parsed = Decimal.Parse(value);
+            SystemUnit fromUnit = new SystemUnit(from);
+            SystemUnit expectedUnit = new SystemUnit(to);
+            UnitValue inputValue = new UnitValue(parsed, fromUnit);
+            UnitValue outcome = Converter.Converter.Convert(inputValue, expectedUnit);
+            Assert.AreEqual((parsed * 0.0022046226m) * 16, outcome.Value);
         }
     }
 }

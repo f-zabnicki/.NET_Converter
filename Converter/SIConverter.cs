@@ -28,7 +28,7 @@ namespace Converter
         {
             if (ConvertionRatio.TryGetValue(unit, out decimal ratio))
             {
-                var value = input.Value * ratio;
+                var value = input.Value / ratio;
                 return new UnitValue(value, new SystemUnit(unit));
             }
             else
