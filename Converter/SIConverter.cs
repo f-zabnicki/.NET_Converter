@@ -21,7 +21,7 @@ namespace Converter
             }
             else
             {
-                throw new NotSupportedException("Not supported Unit");
+                throw new NotSupportedException("Not supported Unit in SI Converter");
             }
         }
         public static UnitValue ToDesignated(UnitValue input, Unit unit)

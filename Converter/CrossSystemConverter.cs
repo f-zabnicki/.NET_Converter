@@ -18,7 +18,7 @@ namespace Converter
                 case Unit.Pound:
                     return new UnitValue(input.Value * PoundToGramRatio, new SystemUnit(Unit.Gram));
                 default:
-                    throw new NotSupportedException("Not supported unit");
+                    throw new NotSupportedException("Not supported unit in Cross System Converter");
             }
         }
     }

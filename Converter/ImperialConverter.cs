@@ -17,7 +17,7 @@ namespace Converter
             if (ConvertionRatio.TryGetValue(input.Unit, out decimal ratio))
             {
                 var value = input.Value * ratio;
-                return new UnitValue(value, new SystemUnit(Unit.Ounce));
+                return new UnitValue(value, new SystemUnit(Unit.Pound));
             }
             else
             {
@@ -33,7 +33,7 @@ namespace Converter
             }
             else
             {
-                throw new NotSupportedException("Not supported Unit");
+                throw new NotSupportedException("Not supported Unit in Imperial Converter");
             }
         }
     }
